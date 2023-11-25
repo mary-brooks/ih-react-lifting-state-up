@@ -1,26 +1,21 @@
 // src/components/Task.jsx
 
-import { useState } from "react";
+import { useState } from 'react';
 
 function Task(props) {
-  const [taskCompleted, setTaskCompleted] = useState(false);
-
-  const toggleTask = () => setTaskCompleted(!taskCompleted);
-
+  // use destructuring to access props more easily via variables
+  const { task, toggleTask } = props;
   return (
-    <div className="task-card">
-      <div className="task-card-half">
-        <h1>{props.task.name}</h1>
-        {taskCompleted ? <span>DONE </span> : <span>PENDING ⌛</span>}
+    <div className='task-card'>
+      <div className='task-card-half'>
+        <h1>{task.name}</h1>
+        {task.completed ? <span>DONE </span> : <span>PENDING ⌛</span>}
 
         <h2>Task Description</h2>
-        <p>{props.task.description}</p>
+        <p>{task.description}</p>
 
-        <button
-          className="add"
-          onClick={() => toggleTask()}
-        >
-          {taskCompleted ? <span>UNDO </span> : <span>✔️</span>}
+        <button className='add' onClick={() => toggleTask(task._id)}>
+          {task.completed ? <span>UNDO </span> : <span>✔️</span>}
         </button>
       </div>
     </div>
